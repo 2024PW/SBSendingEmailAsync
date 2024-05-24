@@ -13,8 +13,8 @@ public class ThreadPoolTaskExecutorConfig {
     @Bean("customThreadPoolTaskExecutor")
     public Executor getThreadPoolTaskExecutor(){
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-        threadPoolTaskExecutor.setCorePoolSize(2);
-        threadPoolTaskExecutor.setMaxPoolSize(2);
+        threadPoolTaskExecutor.setCorePoolSize(10);
+        threadPoolTaskExecutor.setMaxPoolSize(20);
         threadPoolTaskExecutor.setQueueCapacity(100);
         threadPoolTaskExecutor.setThreadNamePrefix("send-email-thread-");
         threadPoolTaskExecutor.initialize();

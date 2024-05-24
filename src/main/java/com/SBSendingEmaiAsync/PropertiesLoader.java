@@ -1,17 +1,15 @@
 package com.SBSendingEmaiAsync;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class SmtpPropertiesLoader {
+public class PropertiesLoader {
 
-    public Properties loadProperties() throws IOException {
+    public static Properties loadProperties(String file) throws IOException {
         Properties properties = new Properties();
 
-        try (   InputStream inputStream = getClass().getResourceAsStream("/smtp.properties")) {
+        try (InputStream inputStream = PropertiesLoader.class.getResourceAsStream(file)) {
             properties.load(inputStream);
         }
 

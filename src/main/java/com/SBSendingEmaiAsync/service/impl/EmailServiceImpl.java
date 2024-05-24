@@ -1,13 +1,12 @@
 package com.SBSendingEmaiAsync.service.impl;
 
-import com.SBSendingEmaiAsync.SmtpPropertiesLoader;
+import com.SBSendingEmaiAsync.PropertiesLoader;
 import com.SBSendingEmaiAsync.model.Email;
 import com.SBSendingEmaiAsync.service.EmailService;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -31,8 +30,7 @@ public class EmailServiceImpl implements EmailService {
             log.info("=== Sending Email Id " + randomInt + " Start ===");
             long start = System.currentTimeMillis();
             MimeMessage message = mailSender.createMimeMessage();
-            SmtpPropertiesLoader loader = new SmtpPropertiesLoader();
-            Properties properties = loader.loadProperties();
+            Properties properties = PropertiesLoader.loadProperties("/smtp.properties");
 
             message.setFrom(new InternetAddress(properties.getProperty("spring.mail.username"), properties.getProperty("spring.mail.displayName")));
             List<String> toAddresses = email.getTo();

@@ -33,8 +33,8 @@ public class EmailController {
         try{
             // int i = 1/0;
             CompletableFuture<Boolean> emailResult =  emailService.sendEmail(email);
-            // CompletableFuture<Boolean> email2 =  emailService.sendEmail(email);
-            // CompletableFuture<Boolean> email3 =  emailService.sendEmail(email);
+            CompletableFuture<Boolean> email2 =  emailService.sendEmail(email);
+            CompletableFuture<Boolean> email3 =  emailService.sendEmail(email);
             Boolean result = emailResult.get();
             if (result) {
                 return new ResponseEntity<>(messageSuccess, HttpStatus.OK);
