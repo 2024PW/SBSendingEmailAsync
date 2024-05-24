@@ -2,6 +2,7 @@ package com.SBSendingEmaiAsync.controller;
 
 import com.SBSendingEmaiAsync.model.Email;
 import com.SBSendingEmaiAsync.service.EmailService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,12 +30,12 @@ public class EmailController {
     private String messageFailure;
 
     @PostMapping("/sendEmailAsync")
-    public ResponseEntity<String> sendEmailAsync(@RequestBody Email email) {
+    public ResponseEntity<String> sendEmailAsync(@Valid @RequestBody Email email) {
         try{
             // int i = 1/0;
             CompletableFuture<Boolean> emailResult =  emailService.sendEmail(email);
-            CompletableFuture<Boolean> email2 =  emailService.sendEmail(email);
-            CompletableFuture<Boolean> email3 =  emailService.sendEmail(email);
+            // CompletableFuture<Boolean> email2 =  emailService.sendEmail(email);
+            // CompletableFuture<Boolean> email3 =  emailService.sendEmail(email);
             Boolean result = emailResult.get();
             if (result) {
                 return new ResponseEntity<>(messageSuccess, HttpStatus.OK);

@@ -1,4 +1,4 @@
-package com.SBSendingEmaiAsync;
+package com.SBSendingEmaiAsync.utility;
 
 import java.io.IOException;
 import java.io.InputStream;

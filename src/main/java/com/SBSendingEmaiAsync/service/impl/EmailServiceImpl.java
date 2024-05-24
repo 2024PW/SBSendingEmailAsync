@@ -1,6 +1,6 @@
 package com.SBSendingEmaiAsync.service.impl;
 
-import com.SBSendingEmaiAsync.PropertiesLoader;
+import com.SBSendingEmaiAsync.utility.PropertiesLoader;
 import com.SBSendingEmaiAsync.model.Email;
 import com.SBSendingEmaiAsync.service.EmailService;
 import jakarta.mail.internet.InternetAddress;
