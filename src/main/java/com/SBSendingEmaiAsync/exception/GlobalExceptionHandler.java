@@ -1,5 +1,6 @@
 package com.SBSendingEmaiAsync.exception;
 
+import com.SBSendingEmaiAsync.model.MessageResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,12 +15,12 @@ import java.util.Map;
 public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,String>>handleInvalidArgument(MethodArgumentNotValidException exception)
+    public ResponseEntity<Map<String,MessageResponse>>handleInvalidArgument(MethodArgumentNotValidException exception)
     {
-        Map<String,String>errorMap=new HashMap<>();
+        Map<String, MessageResponse>errorMap=new HashMap<>();
         exception.getBindingResult().getFieldErrors().forEach(error->
         {
-            errorMap.put(error.getField(),error.getDefaultMessage());
+            errorMap.put(error.getField(), new MessageResponse(error.getDefaultMessage()));
         });
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
     }

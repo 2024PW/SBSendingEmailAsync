@@ -1,6 +1,7 @@
 package com.SBSendingEmaiAsync.controller;
 
 import com.SBSendingEmaiAsync.model.Email;
+import com.SBSendingEmaiAsync.model.MessageResponse;
 import com.SBSendingEmaiAsync.service.EmailService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @RestController
-@RequestMapping("/s/api/email")
+@RequestMapping("/api/email")
 public class EmailController {
 
     @Autowired
@@ -30,7 +31,7 @@ public class EmailController {
     private String messageFailure;
 
     @PostMapping("/sendEmailAsync")
-    public ResponseEntity<String> sendEmailAsync(@Valid @RequestBody Email email) {
+    public ResponseEntity<MessageResponse> sendEmailAsync(@Valid @RequestBody Email email) {
         try{
             // int i = 1/0;
             CompletableFuture<Boolean> emailResult =  emailService.sendEmail(email);
@@ -38,14 +39,14 @@ public class EmailController {
             // CompletableFuture<Boolean> email3 =  emailService.sendEmail(email);
             Boolean result = emailResult.get();
             if (result) {
-                return new ResponseEntity<>(messageSuccess, HttpStatus.OK);
+                return new ResponseEntity<>(new MessageResponse(messageSuccess), HttpStatus.OK);
             }
             else {
-                return new ResponseEntity<>(messageFailure, HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(new MessageResponse(messageFailure), HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
         catch (Exception exception) {
-            return new ResponseEntity<>(messageFailure, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new MessageResponse(messageFailure), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
