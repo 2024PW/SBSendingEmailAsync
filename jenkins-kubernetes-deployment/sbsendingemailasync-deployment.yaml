@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sbsendingemailasync-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sbsendingemailasync
+  template:
+    metadata:
+      labels:
+        app: sbsendingemailasync
+    spec:
+      containers:
+        - name: sbsendingemailasync-container
+          image: ericli10/sbsendingemailasync-repository:latest
+          ports:
+            - containerPort: 10001

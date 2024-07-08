@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Email {
     @NotEmpty(message = "Email receiver list cannot be empty.")
-    private List<@NotBlank(message = "Email receiver list cannot be empty.") String> to;
+    private List<@NotBlank(message = "Email receiver list cannot be empty.") @jakarta.validation.constraints.Email String> to;
 
     @NotNull(message = "Bcc cannot be null. But it can be empty.")
     private String bcc;
