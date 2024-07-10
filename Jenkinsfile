@@ -43,6 +43,7 @@ pipeline {
       steps {
         script {
           kubernetesDeploy(
+            kubeconfigId: "kubernetes",
             configs: [
                 "jenkins-kubernetes-deployment/sbsendingemailasync-deployment.yaml",
                 "jenkins-kubernetes-deployment/sbsendingemailasync-service.yaml"
