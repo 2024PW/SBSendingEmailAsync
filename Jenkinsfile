@@ -42,8 +42,12 @@ pipeline {
     stage('Deploying container to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "jenkins-kubernetes-deployment/sbsendingemailasync-deployment.yaml",
-                                         "jenkins-kubernetes-deployment/sbsendingemailasync-service.yaml")
+          kubernetesDeploy(
+            configs: [
+                "jenkins-kubernetes-deployment/sbsendingemailasync-deployment.yaml",
+                "jenkins-kubernetes-deployment/sbsendingemailasync-service.yaml"
+            ]
+          )
         }
       }
     }
