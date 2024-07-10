@@ -5,11 +5,19 @@ pipeline {
   }
   agent any
   stages {
+
     stage('Checkout Source') {
       steps {
         git 'https://github.com/2024PW/SBSendingEmailAsync.git'
       }
     }
+    stage('Build image') {
+          steps{
+            script {
+              sh 'mvn clean package'
+            }
+          }
+        }
     stage('Build image') {
       steps{
         script {
