@@ -5,7 +5,7 @@ pipeline {
   }
   agent any
   tools {
-    maven 'maven_home' // Reference the Maven installation in Jenkins
+    maven 'maven_home'
   }
   stages {
     stage('Checkout Source') {
@@ -42,13 +42,8 @@ pipeline {
     stage('Deploying container to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(
-            kubeconfigId: "kubernetes",
-            configs: [
-                "jenkins-kubernetes-deployment/sbsendingemailasync-deployment.yaml",
-                "jenkins-kubernetes-deployment/sbsendingemailasync-service.yaml"
-            ]
-          )
+          bat 'kubectl -f ./jenkins-kubernetes-deployment/sbsendingemailasync-deployment.yaml'
+          bat 'kubectl -f ./jenkins-kubernetes-deployment/sbsendingemailasync-service.yaml'
         }
       }
     }
