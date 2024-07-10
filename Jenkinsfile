@@ -11,7 +11,7 @@ pipeline {
         git 'https://github.com/2024PW/SBSendingEmailAsync.git'
       }
     }
-    stage('Build image') {
+    stage('Build') {
           steps{
             script {
               sh 'mvn clean package'
