@@ -4,8 +4,10 @@ pipeline {
     dockerImage = ""
   }
   agent any
+  tools {
+    maven 'maven_home' // Reference the Maven installation in Jenkins
+  }
   stages {
-
     stage('Checkout Source') {
       steps {
         git 'https://github.com/2024PW/SBSendingEmailAsync.git'
