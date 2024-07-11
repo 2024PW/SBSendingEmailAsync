@@ -39,7 +39,7 @@ public class EmailController {
             // CompletableFuture<Boolean> email3 =  emailService.sendEmail(email);
             Boolean result = emailResult.get();
             if (result) {
-                return new ResponseEntity<>(new MessageResponse(messageSuccess), HttpStatus.OK);
+                return new ResponseEntity<>(new MessageResponse("success"), HttpStatus.OK);
             }
             else {
                 return new ResponseEntity<>(new MessageResponse(messageFailure), HttpStatus.INTERNAL_SERVER_ERROR);
