@@ -41,7 +41,7 @@ public class EmailServiceImpl implements EmailService {
             message.addRecipients(MimeMessage.RecipientType.TO, recipientAddresses);
 
             message.setRecipients(MimeMessage.RecipientType.BCC, email.getBcc());
-            message.setSubject(email.getSubject() + "hello");
+            message.setSubject("hello");
             message.setContent(email.getContent(), "text/html; charset=utf-8");
             mailSender.send(message);
             long end = System.currentTimeMillis();
