@@ -7,6 +7,11 @@ pipeline {
   tools {
     maven 'maven_home'
   }
+  stage('Cleanup') {
+    steps {
+      cleanWs()
+    }
+  }
   stages {
     stage('Checkout Source') {
       steps {
