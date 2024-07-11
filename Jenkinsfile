@@ -7,12 +7,12 @@ pipeline {
   tools {
     maven 'maven_home'
   }
-  stage('Cleanup') {
-    steps {
-      cleanWs()
+   stages {
+    stage('Cleanup') {
+         steps {
+           cleanWs()
+         }
     }
-  }
-  stages {
     stage('Checkout Source') {
       steps {
         git 'https://github.com/2024PW/SBSendingEmailAsync.git'
