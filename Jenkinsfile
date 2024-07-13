@@ -47,7 +47,6 @@ pipeline {
     stage('Deploying container to Kubernetes') {
       steps {
         script {
-          bat 'kubectl delete deployment.apps/sbsendingemailasync-deployment'
           bat 'kubectl apply -f ./jenkins-kubernetes-deployment/sbsendingemailasync-deployment.yaml'
           bat 'kubectl apply -f ./jenkins-kubernetes-deployment/sbsendingemailasync-service.yaml'
         }
